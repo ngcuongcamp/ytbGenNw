@@ -92,6 +92,16 @@ const handle_get_id_video = () => {
         videoId = searchValue.split("v=")[1].split("&")[0];
 
     }
+    else if (searchValue.includes("m.youtube.com")) {
+        const parts = searchValue.split("&");
+        const vParam = parts.find(part => part.includes("v="));
+        videoId = vParam.split("v=")[1];
+    }
+
+    else if (searchValue.includes("//youtu.be/")) {
+        videoId = searchValue.split("youtu.be/")[1].split("?")[0];
+    }
+
     else {
         alert("Wrong url format!");
         return;
