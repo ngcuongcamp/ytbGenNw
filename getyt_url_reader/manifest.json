@@ -1,0 +1,40 @@
+{
+    "manifest_version": 3,
+    "name": "GenYT URL Reader",
+    "version": "1.0",
+    "description": "Extension giúp lấy URL hiện tại trên video.genyt.net, hỗ trợ sao chép và mở tab localhost với video ID.",
+    "permissions": [
+        "tabs",
+        "storage",
+        "scripting",
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://video.genyt.net/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png"
+        }
+    },
+    "host_permissions": [
+        "https://video.genyt.net/*",
+        "http://localhost:8000/*"
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png"
+    }
+}

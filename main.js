@@ -10,7 +10,21 @@ const ytb_default_url = "https://www.youtube.com/watch?v="
 let videoID = "PaQX0pktLnw"
 let defaultVideoID = "PaQX0pktLnw"
 const handle_init = () => {
-    let { videoID, idDefault } = init_localStorage();
+
+    const paramsRedirect = new URLSearchParams(window.location.search);
+    const videoIdRedirect = paramsRedirect.get('videoId');
+    let videoID = null;
+    let idDefault = null;
+
+    if (videoIdRedirect) {
+        videoID = videoIdRedirect;
+        localStorage.setItem('ngcuongzth_ytb', videoIdRedirect);
+    } else {
+        const { videoID: localVideoID, idDefault: localIdDefault } = init_localStorage();
+        videoID = localVideoID;
+        idDefault = localIdDefault;
+    }
+
 
     if (videoID) {
         const videoUrl = `${embedUrl}` + `${videoID}` + "?controls=1&autoplay=1&loop=1"
@@ -24,8 +38,13 @@ const handle_init = () => {
     ytFrame.style.height = `${WindowHeight}px`;
 
 
-    defaultVideoID = idDefault
-    searchField.value = `${ytb_default_url}` + `${videoID}`
+    if (!videoIdRedirect && idDefault) {
+        defaultVideoID = idDefault;
+    }
+
+    if (searchField) {
+        searchField.value = `${ytb_default_url}${videoID}`;
+    }
 };
 
 const handle_resize = () => {
@@ -37,7 +56,6 @@ const handle_resize = () => {
 }
 
 const init_localStorage = () => {
-    console.log('initialize')
 
     let local_variable = window.localStorage.getItem('ngcuongzth_ytb');
     local_variable ? localStorage.setItem('ngcuongzth_ytb', local_variable) : localStorage.setItem('ngcuongzth_ytb', videoID);
