@@ -54,9 +54,7 @@ const handle_resize = () => {
     ytFrame.style.width = `${WindowWidth}px`;
     ytFrame.style.height = `${WindowHeight}px`;
 }
-
 const init_localStorage = () => {
-
     let local_variable = window.localStorage.getItem('ngcuongzth_ytb');
     local_variable ? localStorage.setItem('ngcuongzth_ytb', local_variable) : localStorage.setItem('ngcuongzth_ytb', videoID);
     videoID = localStorage.getItem('ngcuongzth_ytb');
