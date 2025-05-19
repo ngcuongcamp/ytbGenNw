@@ -4,6 +4,7 @@ const searchButton = document.getElementById("search_button");
 const defaultButton = document.getElementById("default_button");
 const saveDfButton = document.getElementById("save_df");
 const embedUrl = "https://www.youtube-nocookie.com/embed/"
+const ytb_default_url = "https://www.youtube.com/watch?v="
 
 
 let videoID = "PaQX0pktLnw"
@@ -22,7 +23,9 @@ const handle_init = () => {
     ytFrame.style.width = `${WindowWidth}px`;
     ytFrame.style.height = `${WindowHeight}px`;
 
+
     defaultVideoID = idDefault
+    searchField.value = `${ytb_default_url}` + `${videoID}`
 };
 
 const handle_resize = () => {
@@ -52,7 +55,6 @@ const handle_save_df = () => {
     localStorage.setItem('ngcuongzth_ytb_df_id', vdId)
     console.log('set to default ')
 }
-
 
 
 

@@ -40,7 +40,8 @@ body{
     border-radius: 10px;
     height: 35px;
     cursor: pointer;
-    max-width: 75px;
+    min-width: 50px;
+    max-width: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
